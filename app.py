@@ -138,7 +138,7 @@ app.layout = html.Div(children=[
                                 ),
                                 html.Hr()
                             ],
-                                width = {'size': 5, 'offset': 1 }
+                                width = {'size': 4, 'offset': 1 }
                             )
                         
                             
@@ -157,14 +157,14 @@ app.layout = html.Div(children=[
                                     columns = [{"name": i, "id": i} for i in return_user_articles(USER_TEMP, df, user_item).columns]
                                    ),
                                 ],
-                                width = {'size': 5, 'offset': 1 }),
+                                width = {'size': 4, 'offset': 1 }),
 
                         dbc.Col([
 
                                     html.Hr(),
                                     dcc.Graph(id='hist_articles', figure={}),
 
-                                ], width = {'size': 5, 'offset': 1 }
+                                ], width = {'size': 4, 'offset': 1 }
                                 )]
                             
                         ),  
@@ -179,9 +179,10 @@ app.layout = html.Div(children=[
                                         #style_table={'height': '300px', 'overflowY': 'auto'},
                                         id='table_neighbors',
                                         columns=[{"name": i, "id": i} for i in get_top_sorted_users(USER_TEMP, df, user_item).head(10).columns]
-                                        )
+                                        ),
+                                html.Hr()
     
-                                    ], width = {'size': 5, 'offset': 1 },
+                                    ], width = {'size': 4, 'offset': 1 },
                                 ),
                             dbc.Col([
                                 html.Hr(),
@@ -191,9 +192,10 @@ app.layout = html.Div(children=[
                                         #style_table={'height': '300px', 'overflowY': 'auto'},
                                         id='table_recommendations',
                                         columns=[{"name": i, "id": i} for i in user_user_recs_part2(USER_TEMP, df , user_item).head(10).columns]
-                                        )
+                                        ),
+                                html.Hr()
     
-                                    ], width = {'size': 5, 'offset': 1 },
+                                    ], width = {'size': 4, 'offset': 1 },
                                 )]
                         ),
 
