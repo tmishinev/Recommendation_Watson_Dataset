@@ -197,10 +197,7 @@ app.layout = html.Div(children=[
     
                                     ], width = {'size': 4, 'offset': 1 },
                                 )]
-                        ),
-
-             
-                    
+                        ),                  
     
             ]),
             ])),
@@ -228,7 +225,8 @@ def updateTable_articles(sel_user):
 
     df_group = data_articles.groupby(['article_id', 'title'])['article_id'].count().sort_values(ascending = False)
 
-    fig = px.bar(x = df_group.index.get_level_values(0).map(lambda x: 'id:' + str(x)), y = df_group, hover_data=[ df_group.index.get_level_values(1)], height=400)
+    fig = px.bar(x = df_group.index.get_level_values(0).map(lambda x: 'id:' + str(x)), y = df_group, 
+                    hover_data=[ df_group.index.get_level_values(1)], labels = {'x': 'Articel ID', 'y': 'Number of Interactions', 'hover_data_0': 'Title'}, height=400)
     
     fig.update_layout(
 
@@ -241,7 +239,7 @@ def updateTable_articles(sel_user):
 
     data_rec = user_user_recs_part2(sel_user, df,  user_item).to_dict('records')
 
-    return data_articles.to_dict('records'), data_neighbors, fig, data_rec
+    return data_articles.drop_duplicates().to_dict('records'), data_neighbors, fig, data_rec
 
 
     
